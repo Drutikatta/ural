@@ -136,115 +136,6 @@ token,
 
 
 
-//######Api for update the profile
-
-
-const updateProfile = async (req, res) => {
-    try {
-        const {
-            userid,
-            bio,
-            githubLink,
-            linkedinLink,
-            technicalSkills,
-            projectLinks,
-            education,
-            contactNumber
-        } = req.body;
-
-        // Expecting resume file: req.files.resume
-        const resumeFile = req.files?.resume?.[0];
-
-        if (!userid || !contactNumber) {
-            return res.status(400).json({
-                success: false,
-                message: "Required data is missing"
-            });
-        }
-
-        let resumeUrl;
-        if (resumeFile) {
-            const resumeUpload = await cloudinary.uploader.upload(resumeFile.path, {
-                resource_type: "raw"
-            });
-            resumeUrl = resumeUpload.secure_url;
-        }
-
-        let parsedEducation;
-        try {
-            parsedEducation = JSON.parse(education);
-        } catch (e) {
-            return res.status(400).json({
-                success: false,
-                message: "Invalid education format"
-            });
-        }
-
-        const updateData = await userModel.findByIdAndUpdate(
-            userid,
-            {
-                ...(resumeUrl && { resume: resumeUrl }),
-                bio,
-                githubLink,
-                linkedinLink,
-                technicalSkills,
-                projectLinks,
-                education: parsedEducation,
-                education,
-                contactNumber
-            },
-            { new: true }
-        );
-
-        if (!updateData) {
-            return res.status(404).json({
-                success: false,
-                message: "User not found"
-            });
-        }
-
-        res.json({
-            success: true,
-            data: updateData,
-            message: "The user profile is updated"
-        });
-
-    } catch (error) {
-        console.error(error);
-        return res.status(500).json({
-            success: false,
-            message: "Internal server error"
-        });
-    }
-};
-
-
-
-const applyToHackathon = async (req, res) => {
-  try {
-    const userId = req.user.id; // ✅ Now it will work
-    const { hackathonId } = req.body;
-
-    if (!hackathonId) {
-      return res.status(400).json({ message: 'Hackathon ID is required' });
-    }
-
-    const updatedUser = await userModel.findByIdAndUpdate(
-      userId,
-      { hackatonapllyid: hackathonId },
-      { new: true }
-    );
-
-    if (!updatedUser) {
-      return res.status(404).json({ message: 'User not found' });
-    }
-
-    res.status(200).json({ message: 'Successfully applied to hackathon', user: updatedUser });
-  } catch (error) {
-    console.error(error);
-    res.status(500).json({ message: 'Server Error' });
-  }
-};
 
 
 
@@ -257,5 +148,12 @@ const applyToHackathon = async (req, res) => {
 
 
 
-module.exports={regester,userlogin,updateProfile ,applyToHackathon};
+
+
+
+
+
+
+
+module.exports={regester,userlogin};
 

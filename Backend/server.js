@@ -7,7 +7,7 @@ const connectcloudinary = require('./Config/cloudinary.js');
 
 
 const userroutes = require('./Routes/userRou.js');
-const orgnizerroutes = require('./Routes/organizerRou.js');
+
 
 
 const app = express();
@@ -33,7 +33,7 @@ app.use(cors({
 
 //APi end point
 app.use('/api/user',userroutes);
-app.use('/api/orgnizer',orgnizerroutes);
+
 
 app.get('/', (req,res)=> {
   res.send("<h1>Running.......</h1>")
