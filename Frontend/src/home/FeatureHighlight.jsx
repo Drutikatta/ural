@@ -3,20 +3,30 @@ import React from 'react';
 const FeatureHighlight = () => {
   return (
     <>
-
-    {/* Descriptive Feature Section */}
-    <section>
+      {/* Descriptive Feature Section */}
+      <section>
         <div className="flex flex-col md:flex-row items-center justify-between max-w-6xl mx-auto px-4 py-16 gap-8">
           <div className="relative w-64 h-64">
-            <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-44 h-44 bg-indigo-700 rounded-full"
-              style={{ clipPath: "polygon(50% 0%, 61% 10%, 75% 5%, 80% 15%, 93% 20%, 90% 35%, 100% 50%, 90% 65%, 93% 80%, 80% 85%, 75% 95%, 61% 90%, 50% 100%, 39% 90%, 25% 95%, 20% 85%, 7% 80%, 10% 65%, 0% 50%, 10% 35%, 7% 20%, 20% 15%, 25% 5%, 39% 10%)" }}></div>
+            <div
+              className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-44 h-44 bg-indigo-700 rounded-full"
+              style={{
+                clipPath:
+                  'polygon(50% 0%, 61% 10%, 75% 5%, 80% 15%, 93% 20%, 90% 35%, 100% 50%, 90% 65%, 93% 80%, 80% 85%, 75% 95%, 61% 90%, 50% 100%, 39% 90%, 25% 95%, 20% 85%, 7% 80%, 10% 65%, 0% 50%, 10% 35%, 7% 20%, 20% 15%, 25% 5%, 39% 10%)',
+              }}
+            ></div>
             <div className="absolute top-8 left-8 w-12 h-12 bg-green-400 rounded-full"></div>
-            <div className="absolute top-1/4 right-8 w-16 h-16 bg-yellow-300 rounded-tl-full"
-              style={{ clipPath: "polygon(100% 0, 0 0, 0 100%)" }}></div>
-            <div className="absolute bottom-8 left-1/4 w-20 h-20 bg-blue-300 rounded-tr-full"
-              style={{ clipPath: "polygon(100% 0, 0 0, 100% 100%)" }}></div>
-            <div className="absolute bottom-8 right-8 w-20 h-16 bg-green-400 rounded-full"
-              style={{ clipPath: "polygon(100% 0, 0 50%, 100% 100%)" }}></div>
+            <div
+              className="absolute top-1/4 right-8 w-16 h-16 bg-yellow-300 rounded-tl-full"
+              style={{ clipPath: 'polygon(100% 0, 0 0, 0 100%)' }}
+            ></div>
+            <div
+              className="absolute bottom-8 left-1/4 w-20 h-20 bg-blue-300 rounded-tr-full"
+              style={{ clipPath: 'polygon(100% 0, 0 0, 100% 100%)' }}
+            ></div>
+            <div
+              className="absolute bottom-8 right-8 w-20 h-16 bg-green-400 rounded-full"
+              style={{ clipPath: 'polygon(100% 0, 0 50%, 100% 100%)' }}
+            ></div>
           </div>
 
           <div className="md:max-w-lg space-y-6">
@@ -29,21 +39,19 @@ const FeatureHighlight = () => {
             </div>
 
             <h2 className="text-4xl font-bold text-gray-800">
-              Streamlined Registration & Event Tools
+              Isotope Management & Nuclear Applications
             </h2>
 
             <p className="text-gray-600 text-lg">
-              Manage your hackathon end-to-end—from event creation to registration, real-time tracking, and team management. It's all in one place.
+              From isotope extraction to reactor tracking, manage every aspect of nuclear technology research and implementation with precision and ease.
             </p>
 
             <button className="bg-blue-50 text-blue-600 hover:bg-blue-100 transition px-6 py-3 rounded-md font-medium">
-              Create Your Hackathon
+              Launch Nuclear Workflow
             </button>
           </div>
         </div>
-      </section>    
-
-
+      </section>
 
       {/* Simulated Browser Section */}
       <section className="bg-[#b8d6f7] py-20 flex justify-center items-center rounded-2xl w-[1000px] ml-64">
@@ -79,26 +87,24 @@ const FeatureHighlight = () => {
               </div>
             </div>
 
-            {/* Tooltips for Hackathon Platform */}
+            {/* Tooltips */}
             <div className="absolute -top-10 left-8 bg-[#3734b8] text-white text-sm px-5 py-3 rounded-lg shadow-md font-mono mt-4">
-              Create your hackathon event easily.
+              Simulate isotope extraction & storage.
               <div className="absolute top-full left-6 w-3 h-3 bg-[#3734b8] rotate-45 -mt-1"></div>
             </div>
 
             <div className="absolute top-6 right-12 bg-[#3734b8] text-white text-sm px-4 py-2 rounded-lg shadow-md font-mono">
-              Track registrations live.
+              Track nuclear material flow in real time.
               <div className="absolute top-full left-6 w-3 h-3 bg-[#3734b8] rotate-45 -mt-1"></div>
             </div>
 
             <div className="absolute bottom-6 right-8 bg-[#3734b8] text-white text-sm px-4 py-2 rounded-lg shadow-md font-mono">
-              Manage teams & communication.
+              Manage reactor teams & safety protocols.
               <div className="absolute top-full left-6 w-3 h-3 bg-[#3734b8] rotate-45 -mt-12 ml-24"></div>
             </div>
           </div>
         </div>
       </section>
-
-      
     </>
   );
 };

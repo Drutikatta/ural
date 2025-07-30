@@ -29,15 +29,14 @@ const FacilitiesSection = () => {
           {/* Left Section - Text */}
           <div className="md:w-1/3">
             <h2 className="text-3xl font-bold mb-3">
-              Everything You Need to <span className="text-blue-600">Organize</span>
-              <br />Your Hackathon
+              Everything You Need <span className="text-blue-600"></span>
+              <br />Know about Nuclear Tech
             </h2>
             <p className="text-gray-700 mb-8">
-              From participant registration to team formation and real-time event updates—our platform handles it all,
-              so you can focus on creating an unforgettable hackathon experience.
+              Unlock the power of nuclear technology and isotopes for a sustainable future. Stay informed with the latest innovations, research, and real-world applications.
             </p>
             <button className="bg-blue-600 text-white py-2 px-6 rounded-full hover:bg-blue-700 transition duration-300">
-              Start Organizing
+              Start Learning
             </button>
           </div>
 

@@ -28,7 +28,7 @@ const Testimonials = () => {
     <section className="bg-white py-24 px-4 md:px-12 lg:px-24">
       <div className="text-center mb-16">
         <h2 className="text-3xl md:text-4xl font-bold text-gray-800">
-          What Our <span className="text-[#2176FF]">Participants</span> Say About Us
+          What Our <span className="text-[#2176FF]">Technologies</span> Say 
         </h2>
         <div className="flex justify-center mt-4 space-x-2">
           <span className="w-3 h-3 bg-[#2176FF] rounded-full"></span>

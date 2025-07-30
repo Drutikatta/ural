@@ -9,22 +9,22 @@ const HowToParticipate = () => {
     {
       image: Sign,
       title: 'Sign Up & Explore',
-      description: 'Create your profile and browse ongoing and upcoming hackathons.',
+      description: 'Create your profile and browse Nuclear Technologies with Isotopes.',
     },
     {
       image: Join,
-      title: 'Join a Hackathon',
-      description: 'Register for a hackathon that excites you and suits your skills.',
+      title: 'Understand the Isotopes',
+      description: 'Get the Detail idea about the Isotopes',
     },
     {
       image: Build,
-      title: 'Build & Collaborate',
-      description: 'Form teams, brainstorm ideas, and work on your project together.',
+      title: 'Economic factors',
+      description: 'Understand the Economic Factors of the isotopes in nuclear.',
     },
     {
       image: Win,
       title: 'Participate & Win',
-      description: 'Participate, present your work, and stand a chance to win!',
+      description: 'Participate in Quizes and Puzzles to Get more understanding of the Technology!',
     },
   ];
 
@@ -32,9 +32,9 @@ const HowToParticipate = () => {
     <section className="bg-white py-24 relative">
       <div className="text-center mb-16">
         <h2 className="text-4xl font-bold text-gray-800">
-          How to <span className="text-[#2176FF]">Participate</span>
+          How to <span className="text-[#2176FF]">Navigate the site</span>
         </h2>
-        <p className="text-gray-500 mt-3 text-lg">Join the innovation journey in 4 easy steps</p>
+        <p className="text-gray-500 mt-3 text-lg">Join the Nuclear Technology journey in 4 easy steps</p>
       </div>
 
       <div className="relative flex justify-center items-center flex-wrap gap-14 px-10">

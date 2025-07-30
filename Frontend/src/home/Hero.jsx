@@ -23,13 +23,14 @@ const Hero = () => {
             {/* Left Side */}
             <div className="lg:w-1/2 text-center lg:text-left pr-8 ml-[100px] mt-[-80px]">
               <h1 className="text-5xl md:text-6xl font-bold text-black leading-tight">
-                Fuel Innovation.<br />
-                <span className="text-[#2176FF]">Host Limitless</span><br />
-                Hackathons.
+                The future of nuclear  <br />
+                <span className="text-[#2176FF]">science lies not only</span><br />
+                in power—but in possibility.
+
               </h1>
               <p className="mt-6 text-gray-600">
-                Launch your own custom hackathons in minutes. <br />
-                Whether you're running a campus challenge or a global tech sprint, our platform scales with your vision.
+                Unlock the power of nuclear technology and isotopes for a sustainable future. <br />
+                Stay informed with the latest innovations, research, and real-world applications.
               </p>
               <button className="mt-8 bg-[#2176FF] text-white px-6 py-3 rounded-lg font-medium flex items-center justify-center lg:justify-start mx-auto lg:mx-0 shadow-md hover:bg-[#571ad0] transition">
                 Start Your Search

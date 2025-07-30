@@ -15,6 +15,9 @@ import ParticipantLogin from "./participant/ParticipantLogin";
 import OrganiserLogin from "./Organiser/OrganiserLogin";
 import HackathonInfo from "./components/HackthonInfo";
 import CandidateDetails from "./components/CandidateDetails";
+import CardHoverEffect from "./home/CardHoverEffect";
+import CardDetailPage from "./home/CardDetailPage";
+import News from "./components/News";
 
 const router = createBrowserRouter([
   {
@@ -24,6 +27,10 @@ const router = createBrowserRouter([
       {
         path: "/",
         element: <Home />,
+      },
+      {
+        path: "/news",
+        element: <News/>,
       },
       {
         path: "/test",
@@ -53,6 +60,8 @@ const router = createBrowserRouter([
         path: "/partinfo",
         element: <CandidateDetails/>,
       },
+      { path: "/isotopes", element: <CardHoverEffect /> },
+      { path: "/card/:title", element: <CardDetailPage /> },
     ],
   },
 ]);

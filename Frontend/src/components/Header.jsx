@@ -17,12 +17,15 @@ const Header = () => {
               <path d="M20 24V32L11.7154 28V20L20 24Z" fill="#85c1e9" />
               <path d="M28.2846 20V28L20 32V24L28.2846 20Z" fill="#85c1e9" />
             </svg>
-            <h1 className="ml-3 text-2xl font-bold text-[#3498db] cursor-pointer" onClick={() => navigate("/")}>HackthonX</h1>
+            <h1 className="ml-3 text-2xl font-bold text-[#3498db] cursor-pointer" onClick={() => navigate("/")}>Nuclopedia</h1>
           </div>
           <div className="flex space-x-4 items-center">
-            <button className="text-base font-medium text-gray-700 hover:text-[#2176FF] px-4 py-2 cursor-pointer" onClick={()=> navigate("/OrganiserLogin")}>
-              Organize a Hackthon
+            <button className="text-base font-medium text-gray-700 hover:text-[#2176FF] px-4 py-2 cursor-pointer" onClick={()=> navigate("/News")}>
+              News
             </button>
+            {/* <button className="text-base font-medium text-gray-700 hover:text-[#2176FF] px-4 py-2 cursor-pointer" onClick={()=> navigate("/OrganiserLogin")}>
+              Organize a Hackthon
+            </button> */}
             <button
               className="text-base font-medium text-white bg-[#3498db] rounded-md px-6 py-2.5 hover:bg-[#2980b9] transition-colors duration-200 shadow-sm cursor-pointer flex items-center"
               onClick={() => navigate("/participantLogin")}
