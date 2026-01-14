@@ -22,6 +22,8 @@ import Quiz from "./components/Quiz";
 import EconomicCalculator from "./components/EconomicCalculator";
 import CombinedCharts from "./components/CombinedCharts";
 
+
+
 const router = createBrowserRouter([
   {
     path: "/",
@@ -86,6 +88,8 @@ const router = createBrowserRouter([
     ],
   },
 ]);
+
+
 
 createRoot(document.getElementById('root')).render(
   <StrictMode>
