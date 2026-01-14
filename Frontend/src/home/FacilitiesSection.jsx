@@ -12,13 +12,13 @@ import {
 
 const FacilitiesSection = () => {
   const facilities = [
-    { icon: <FaUsers className="text-blue-600 text-3xl mx-auto" />, title: 'Live Participant Tracking' },
-    { icon: <FaWpforms className="text-blue-600 text-3xl mx-auto" />, title: 'Custom Registration Forms' },
-    { icon: <FaUsersCog className="text-blue-600 text-3xl mx-auto" />, title: 'Team Management' },
-    { icon: <FaClock className="text-blue-600 text-3xl mx-auto" />, title: 'Real-time Updates' },
-    { icon: <FaEnvelopeOpenText className="text-blue-600 text-3xl mx-auto" />, title: 'Automated Emails' },
-    { icon: <FaMoneyBillWave className="text-blue-600 text-3xl mx-auto" />, title: 'Payment Handling' },
-    { icon: <FaChartBar className="text-blue-600 text-3xl mx-auto" />, title: 'Analytics & Insights' },
+    { icon: <FaUsers className="text-blue-600 text-3xl mx-auto" />, title: 'User Authentication' },
+    { icon: <FaWpforms className="text-blue-600 text-3xl mx-auto" />, title: 'Isotopes Different Sectors' },
+    { icon: <FaUsersCog className="text-blue-600 text-3xl mx-auto" />, title: 'Calculator' },
+    { icon: <FaClock className="text-blue-600 text-3xl mx-auto" />, title: 'Economic Visual representation' },
+    { icon: <FaEnvelopeOpenText className="text-blue-600 text-3xl mx-auto" />, title: 'News' },
+    { icon: <FaMoneyBillWave className="text-blue-600 text-3xl mx-auto" />, title: 'Chat bot' },
+    { icon: <FaChartBar className="text-blue-600 text-3xl mx-auto" />, title: 'User Friendly' },
     { icon: <FaTools className="text-blue-600 text-3xl mx-auto" />, title: 'More Features Coming' },
   ];
 

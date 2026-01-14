@@ -42,7 +42,7 @@ const Hero = () => {
               <div className="relative">
                 {/* Badge */}
                 <div className="absolute top-0 left-0 -translate-y-1/2 -translate-x-1/4 z-20 bg-white shadow-md rounded-full px-3 py-2 flex items-center text-xs font-medium">
-                  <span className='pr-1 text-lg'>🥳</span> Best Experience
+                  <span className='pr-1 text-lg'>Techno</span> Experience
                 </div>
 
                 {/* Images */}

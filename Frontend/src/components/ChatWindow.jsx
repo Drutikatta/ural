@@ -1,24 +1,25 @@
 import React, { useState, useEffect, useRef } from "react";
 import { FiSend, FiX, FiCode, FiUsers, FiCpu, FiAward, FiTrendingUp, FiHelpCircle } from "react-icons/fi";
-import { GoogleGenerativeAI } from "@google/generative-ai";
 
-const genAI = new GoogleGenerativeAI("AIzaSyCdVdYxncXdiIFIywI6FNyUWAH3S2Jsmgg");
-const model = genAI.getGenerativeModel({ model: "gemini-2.0-flash" });
+const quickSuggestionsData = [
+  { text: "What are isotopes and why are they important?", icon: <FiHelpCircle size={12} />, answer: "Isotopes are variants of elements with different numbers of neutrons. They are important in many fields including medicine, energy, and research." },
+  { text: "How are isotopes used in medicine?", icon: <FiAward size={12} />, answer: "Isotopes help in medical imaging and cancer treatments, such as using radioactive tracers for diagnosis and radiotherapy for treatment." },
+  { text: "What is nuclear energy?", icon: <FiCpu size={12} />, answer: "Nuclear energy is energy released during nuclear fission or fusion, commonly used to generate electricity in nuclear power plants." },
+  { text: "Are isotopes safe?", icon: <FiUsers size={12} />, answer: "Stable isotopes are safe, while radioactive isotopes require careful handling due to radiation risks." },
+  { text: "Uses of isotopes in agriculture", icon: <FiTrendingUp size={12} />, answer: "Isotopes are used to improve soil fertility, control pests, and develop better crop varieties." },
+  // { text: "How do nuclear reactors work?", icon: <FiCode size={12} />, answer: "Nuclear reactors control fission chain reactions to produce heat, which generates steam to run turbines for electricity." },
+  // { text: "Difference between stable and radioactive isotopes", icon: <FiHelpCircle size={12} />, answer: "Stable isotopes do not decay over time, whereas radioactive isotopes decay and emit radiation." },
+  // { text: "Common isotopes used in daily life", icon: <FiAward size={12} />, answer: "Examples include Carbon-14 for dating, Iodine-131 in medicine, and Uranium-235 in energy." },
+];
 
 const ChatWindow = ({ onClose }) => {
   const [messages, setMessages] = useState([]);
   const [newMessage, setNewMessage] = useState("");
   const [isTyping, setIsTyping] = useState(false);
   const [showEmojis, setShowEmojis] = useState(false);
-  const [quickSuggestions] = useState([
-    { text: "What is a hackathon?", icon: <FiHelpCircle size={12} /> },
-    { text: "How to organize a hackathon?", icon: <FiAward size={12} /> },
-    { text: "Best judging criteria?", icon: <FiTrendingUp size={12} /> },
-    { text: "Team formation tips", icon: <FiUsers size={12} /> }
-  ]);
   const messagesEndRef = useRef(null);
   const welcomeMessageRef = useRef(false);
-  
+
   // Animation states
   const [showWelcomeAnimation, setShowWelcomeAnimation] = useState(true);
 
@@ -30,16 +31,14 @@ const ChatWindow = ({ onClose }) => {
     scrollToBottom();
   }, [messages]);
 
-  // Fixed welcome message logic
   useEffect(() => {
-    // Only show welcome animation and message once when component mounts
     if (!welcomeMessageRef.current) {
       welcomeMessageRef.current = true;
-      
-      // Show welcome animation for 1 second
       setTimeout(() => {
         setShowWelcomeAnimation(false);
-        receiveMessage("👋 Hello! I'm your Hackathon Platform Assistant. Need help organizing or participating in a hackathon? Ask me anything or try one of the quick suggestions below!");
+        receiveMessage(
+          "👋 Hello! I'm your Nuclear Technology & Isotopes Assistant. Click any popular question below to learn more!"
+        );
       }, 1000);
     }
   }, []);
@@ -48,86 +47,64 @@ const ChatWindow = ({ onClose }) => {
     setNewMessage(e.target.value);
   };
 
-  const handleQuickSuggestion = (suggestion) => {
-    sendMessage(suggestion);
+  // When quick suggestion button clicked
+  const handleQuickSuggestion = (suggestionText) => {
+    console.log("Clicked quick suggestion:", suggestionText);
+    sendMessage(suggestionText);
     setIsTyping(true);
-    
-    fetchGeminiResponse(suggestion).then(response => {
+
+    // Find answer from static data
+    const found = quickSuggestionsData.find((q) => q.text === suggestionText);
+    if (found) {
+      setTimeout(() => {
+        setIsTyping(false);
+        receiveMessage(found.answer);
+      }, 700);
+    } else {
       setIsTyping(false);
-      receiveMessage(response);
-    });
-  };
-
-  const fetchGeminiResponse = async (userMessage) => {
-    try {
-      const prompt = `You are an expert Hackathon Platform Assistant. Your platform allows organizers to create custom hackathons where participants can compete, engage, and interact with each other. 
-
-Always interpret the user's question generously, even if it contains typos or is unclear. If they ask about "Hacakhon" or similar misspellings, assume they're asking about hackathons.
-
-For basic questions like "What is a hackathon?", provide a helpful and informative answer rather than redirecting.
-
-Provide helpful information about:
-- Creating and managing hackathon events
-- Setting up team formation and project submissions
-- Judging criteria and evaluation processes
-- Participant engagement features
-- Virtual collaboration tools
-- Community building features
-- Technical implementation details
-- Best practices for successful hackathons
-
-Only redirect if the question is completely unrelated to hackathons, technology events, coding competitions, or software development.
-
-Keep your responses engaging and visual by occasionally using relevant emojis like 🚀, 💻, 🏆, 👨‍💻, 👩‍💻, 🔧, 🛠️, 🧠, 💡, 🌟, ✨
-
-User: ${userMessage}`;
-
-      const result = await model.generateContent(prompt);
-      return result.response.text().replace(/\*/g, "");
-    } catch (error) {
-      console.error("Error fetching response from Gemini:", error);
-      return "Sorry, something went wrong. Please try again later.";
+      receiveMessage("Sorry, I don't have an answer for that.");
     }
   };
 
-  const handleSubmit = async (e) => {
+  const handleSubmit = (e) => {
     e.preventDefault();
     if (newMessage.trim() === "") return;
 
     sendMessage(newMessage);
     setNewMessage("");
     setIsTyping(true);
-    setShowEmojis(false);
 
-    const botResponse = await fetchGeminiResponse(newMessage);
-    setIsTyping(false);
-    receiveMessage(botResponse);
+    // Since this is static, just reply with a default message
+    setTimeout(() => {
+      setIsTyping(false);
+      receiveMessage("Sorry, I only answer from the suggested questions for now.");
+    }, 1000);
   };
 
   const sendMessage = (message) => {
-    setMessages((prevMessages) => [...prevMessages, { text: message, type: "user" }]);
+    setMessages((prev) => [...prev, { text: message, type: "user" }]);
   };
 
   const receiveMessage = (message) => {
-    setMessages((prevMessages) => [...prevMessages, { text: message, type: "bot" }]);
+    setMessages((prev) => [...prev, { text: message, type: "bot" }]);
   };
 
   const formatMessage = (text) => {
-    // Simple markdown-like formatting
     const formattedText = text
       .replace(/\*\*(.*?)\*\*/g, '<span class="font-bold">$1</span>')
       .replace(/\*(.*?)\*/g, '<span class="italic">$1</span>')
       .replace(/```([\s\S]*?)```/g, '<pre class="bg-gray-100 p-2 rounded my-2 text-sm overflow-x-auto">$1</pre>')
       .replace(/`(.*?)`/g, '<code class="bg-gray-100 px-1 rounded text-sm">$1</code>')
-      .split('\n').join('<br/>');
-    
+      .split("\n")
+      .join("<br/>");
+
     return <div dangerouslySetInnerHTML={{ __html: formattedText }} />;
   };
 
   const emojis = ["💻", "🚀", "🏆", "👨‍💻", "👩‍💻", "🔧", "🛠️", "🧠", "💡", "🌟"];
-  
+
   const addEmoji = (emoji) => {
-    setNewMessage(prev => prev + emoji);
+    setNewMessage((prev) => prev + emoji);
     setShowEmojis(false);
   };
 
@@ -141,15 +118,15 @@ User: ${userMessage}`;
             <FiCpu size={20} className="text-white relative z-10" />
           </div>
           <div>
-            <h2 className="text-white font-semibold">Hackathon Assistant</h2>
+            <h2 className="text-white font-semibold">Nuclear Tech Assistant</h2>
             <div className="flex items-center text-xs text-white/80">
               <span className="w-2 h-2 rounded-full bg-green-400 mr-1.5 animate-pulse"></span>
               Active Now
             </div>
           </div>
         </div>
-        <button 
-          onClick={onClose} 
+        <button
+          onClick={onClose}
           className="text-white hover:bg-white/20 p-2 rounded-full transition-colors"
           aria-label="Close chat"
         >
@@ -159,7 +136,7 @@ User: ${userMessage}`;
 
       {/* Chat Messages */}
       <div className="flex-1 p-4 overflow-y-auto bg-gray-50 scrollbar-thin scrollbar-thumb-gray-300 scrollbar-track-transparent">
-      {showWelcomeAnimation && (
+        {showWelcomeAnimation && (
           <div className="flex justify-center items-center h-full">
             <div className="text-center">
               <div className="w-16 h-16 mx-auto mb-4 rounded-full bg-[#3498db] flex items-center justify-center animate-pulse">
@@ -169,20 +146,23 @@ User: ${userMessage}`;
             </div>
           </div>
         )}
-        
+
         <div className="space-y-4">
           {messages.map((message, index) => (
-            <div key={index} className={`flex ${message.type === "user" ? "justify-end" : "justify-start"} animate-fadeIn`}>
+            <div
+              key={index}
+              className={`flex ${message.type === "user" ? "justify-end" : "justify-start"} animate-fadeIn`}
+            >
               <div className="flex items-end gap-2 max-w-[85%]">
                 {message.type === "bot" && (
                   <div className="w-8 h-8 rounded-full bg-[#3498db] flex items-center justify-center flex-shrink-0 shadow-md">
                     <FiCpu size={14} className="text-white" />
                   </div>
                 )}
-                <div 
+                <div
                   className={`p-3 rounded-lg shadow-sm ${
-                    message.type === "user" 
-                      ? "bg-gradient-to-r from-[#3498db] to-[#2980b9] text-white rounded-br-none shadow-md" 
+                    message.type === "user"
+                      ? "bg-gradient-to-r from-[#3498db] to-[#2980b9] text-white rounded-br-none shadow-md"
                       : "bg-white text-gray-800 rounded-bl-none border border-gray-200"
                   }`}
                 >
@@ -216,24 +196,22 @@ User: ${userMessage}`;
         </div>
       </div>
 
-      {/* Quick Suggestions */}
-      {messages.length <= 2 && !isTyping && (
-        <div className="px-4 py-3 bg-white border-t border-gray-100">
-          <p className="text-xs text-gray-500 mb-2 font-medium">Popular questions:</p>
-          <div className="flex flex-wrap gap-2">
-            {quickSuggestions.map((suggestion, index) => (
-              <button
-                key={index}
-                className="px-3 py-1.5 bg-gray-100 hover:bg-blue-50 hover:text-[#3498db] rounded-full text-sm text-gray-700 transition-colors flex items-center gap-1.5 border border-transparent hover:border-blue-100"
-                onClick={() => handleQuickSuggestion(suggestion.text)}
-              >
-                {suggestion.icon}
-                {suggestion.text}
-              </button>
-            ))}
-          </div>
+      {/* Quick Suggestions - ALWAYS SHOW */}
+      <div className="px-4 py-3 bg-white border-t border-gray-100">
+        <p className="text-xs text-gray-500 mb-2 font-medium">Popular questions:</p>
+        <div className="flex flex-wrap gap-2">
+          {quickSuggestionsData.map((suggestion, index) => (
+            <button
+              key={index}
+              className="px-3 py-1.5 bg-gray-100 hover:bg-blue-50 hover:text-[#3498db] rounded-full text-sm text-gray-700 transition-colors flex items-center gap-1.5 border border-transparent hover:border-blue-100"
+              onClick={() => handleQuickSuggestion(suggestion.text)}
+            >
+              {suggestion.icon}
+              {suggestion.text}
+            </button>
+          ))}
         </div>
-      )}
+      </div>
 
       {/* Input Area */}
       <form onSubmit={handleSubmit} className="p-4 border-t border-gray-200 bg-white rounded-b-xl relative">
@@ -253,7 +231,7 @@ User: ${userMessage}`;
             </div>
           </div>
         )}
-        
+
         <div className="flex space-x-2">
           <button
             type="button"
@@ -264,14 +242,16 @@ User: ${userMessage}`;
           </button>
           <input
             type="text"
-            placeholder="Ask about hackathon features..."
+            placeholder="Ask about isotopes or nuclear tech..."
             className="flex-1 p-3 border border-gray-300 rounded-full focus:outline-none focus:ring-2 focus:ring-[#3498db] text-gray-700 placeholder-gray-400"
             value={newMessage}
             onChange={handleInputChange}
           />
-          <button 
-            type="submit" 
-            className={`bg-[#3498db] text-white p-3 rounded-full hover:bg-[#2980b9] transition-all shadow-md ${isTyping ? 'opacity-70 cursor-not-allowed' : 'hover:shadow-lg transform hover:scale-105'}`} 
+          <button
+            type="submit"
+            className={`bg-[#3498db] text-white p-3 rounded-full hover:bg-[#2980b9] transition-all shadow-md ${
+              isTyping ? "opacity-70 cursor-not-allowed" : "hover:shadow-lg transform hover:scale-105"
+            }`}
             disabled={isTyping}
             aria-label="Send message"
           >

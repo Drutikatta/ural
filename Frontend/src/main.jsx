@@ -18,6 +18,9 @@ import CandidateDetails from "./components/CandidateDetails";
 import CardHoverEffect from "./home/CardHoverEffect";
 import CardDetailPage from "./home/CardDetailPage";
 import News from "./components/News";
+import Quiz from "./components/Quiz";
+import EconomicCalculator from "./components/EconomicCalculator";
+import CombinedCharts from "./components/CombinedCharts";
 
 const router = createBrowserRouter([
   {
@@ -31,6 +34,19 @@ const router = createBrowserRouter([
       {
         path: "/news",
         element: <News/>,
+      },
+      {
+        path: "/CombinedCharts",
+        element: <CombinedCharts/>,
+      },
+      {
+        path: "/CombinedCharts",
+        element: <CombinedCharts/>,
+      },
+      
+      {
+        path: "/EconomicCalculator",
+        element: <EconomicCalculator/>,
       },
       {
         path: "/test",
@@ -60,7 +76,12 @@ const router = createBrowserRouter([
         path: "/partinfo",
         element: <CandidateDetails/>,
       },
+      {
+        path: "/quiz",
+        element: <Quiz/>,
+      },
       { path: "/isotopes", element: <CardHoverEffect /> },
+
       { path: "/card/:title", element: <CardDetailPage /> },
     ],
   },
